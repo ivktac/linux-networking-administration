@@ -3,8 +3,7 @@ file /dev/sd? | grep -o ^.*special | md5sum | cut -c 3-9
 sudo fdisk /dev/sdb
 lsblk
 sudo mkfs.ext4 /dev/sdb[15]
-mkdir -p /media/1
-mkdir -p /media/5
+mkdir -p /media/[15]
 sudo mount -o ro /dev/sdb1 /media/1
 sudo mount -o noatime /dev/sdb5 /media/5
 mount | grep -P '^/dev/sdb\d' | sort | md5sum | cut -c 7-13

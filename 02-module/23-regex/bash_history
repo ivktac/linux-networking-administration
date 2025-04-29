@@ -1,0 +1,6 @@
+export MAC_REGEX="^([0-9A-Fa-f]{2}([:-]?)){5}[0-9A-Fa-f]{2}$"
+sudo grep -r -o -E "$MAC_REGEX" /etc /var 2>/dev/null
+grep -Ev "^\s*(#|$)" /etc/nsswitch.conf
+grep -Erho "https?://[^[:space:]'\"]+" /etc 2>/dev/null
+sudo grep -v "COMMAND" | grep -iE "fail|invalid" /var/log/secure*
+sudo zgrep -E 'Failed password|authentication failure|Invalid user' /var/log/secure*

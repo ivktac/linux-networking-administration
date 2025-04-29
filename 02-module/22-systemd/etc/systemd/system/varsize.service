@@ -1,0 +1,10 @@
+[Unit]
+Description=Record the size of /var in MB
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c '/usr/bin/du -sm /var | cut -f1 >> /root/varsize.log'
+
+[Install]
+WantedBy=multi-user.target

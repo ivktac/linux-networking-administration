@@ -1,0 +1,1 @@
+%universe ALL=(ALL) NOPASSWD: /usr/sbin/ip

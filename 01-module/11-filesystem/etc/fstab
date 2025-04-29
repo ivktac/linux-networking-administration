@@ -1,0 +1,17 @@
+#
+# /etc/fstab
+# Created by anaconda on Tue Dec 31 12:07:42 2024
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+/dev/mapper/ol-root     /                       xfs     defaults        0 0
+UUID=b83390ed-0aac-41f1-b0d4-bc4b7a64f98d /boot                   xfs     defaults        0 0
+/dev/mapper/ol-swap     none                    swap    defaults        0 0
+
+# Put here custom filesystems
+UUID=20f3f18c-7d0d-43b5-abe2-a6488d6ae1ca /media/1 ext4 defaults 0 0
+UUID=161734c6-975b-44ab-b57d-6cab4816351d /media/5 ext4 defaults 0 0

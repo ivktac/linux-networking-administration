@@ -1,0 +1,8 @@
+sudo tail -f /var/log/cron
+crontab -e
+crontab -l
+ls -l /var/spool/cron/$USER
+sudo tail -f /tmp/date
+sudoedit /etc/crontab
+sudoedit /etc/cron.d/uptime
+sudoedit /etc/cron.d/count_cron_edits

@@ -1,0 +1,26 @@
+sudoedit /root/my.sh
+sudo chmod +x /root/my.sh
+sudoedit /etc/systemd/system/my.service
+sudo systemctl daemon-reload
+sudo systemctl start my.service
+sudo systemctl status my.service
+sudo tail -f /var/log/my.log
+sudo systemctl enable my.service
+sudo systemctl disable my.service
+sudo systemctl stop my.service
+
+sudo systemctl set-default rescue.target
+systemctl list-units --type=target | grep $(systemctl get-default) | awk '{print $1 $2}' | md5sum | cut -c 5-10
+sudo systemctl isolate multi-user.target
+sudo systemctl set-default multi-user.target
+sudo systemctl daemon-reload
+sudo systemctl enable varsize.service
+sudo touch /root/varsize.log
+sudo chown root:root /root/varsize.log
+sudo chmod 640 /root/varsize.log
+sudo su - root
+echo $(systemctl list-unit-files | grep varsize | awk '{print $1, $2}') $(systemctl start varsize 2>&1) $(find /root -mmin -0.2 -type f 2>&1) | md5sum | cut -c 10-16
+
+sudo systemctl daemon-reload
+sudo systemctl isolate custom.target
+echo $(systemctl list-units --type=target | grep custom | awk '{print $1 $2 $3}') $(systemctl list-dependencies custom.target | head -3 | sed s/[^a-z]//g | sort) | md5sum | cut -c 10-16

@@ -1,0 +1,2 @@
+*/1 * * * * root grep -v CMD /var/log/cron* | grep -cE "RELOAD|REPLACE|DELETE" > /tmp/cron_count
+* */1 * * * root grep -v CMD "$(date +\%b \%d)" /var/log/cron | grep -v CMD | grep -cE "RELOAD|REPLACE|DELETE" > /tmp/cron_count_daily

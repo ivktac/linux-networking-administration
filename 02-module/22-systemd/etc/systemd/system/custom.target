@@ -1,0 +1,7 @@
+[Unit]
+Description=Custom Target
+Requires=multi-user.target
+Wants=varsize.service sshd.service
+
+[Install]
+WantedBy=multi-user.target

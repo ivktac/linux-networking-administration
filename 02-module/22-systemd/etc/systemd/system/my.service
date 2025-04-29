@@ -1,0 +1,9 @@
+[Unit]
+Description=My Super service
+
+[Service]
+ExecStart=/root/my.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

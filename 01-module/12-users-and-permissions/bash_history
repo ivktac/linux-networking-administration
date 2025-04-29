@@ -1,0 +1,15 @@
+sudo groupadd universe
+sudo useradd -m -g /creator -g universe creator
+sudo useradd -m -g /home/des -g universe destroyer
+sudo passwd creator
+sudo passwd destroyer
+echo $(groups creator destroyer) $(grep -E "creator|destroyer" /etc/passwd | awk -F ':' '{print $6}' | sort) | md5sum | cut -c -6
+sudo visudo
+sudo chmod 0440 /etc/sudoers.d/creator_mount
+su - creator
+echo $( id -un; pwd; sudo mount -v --bind /tmp /media 2>&1; sudo umount /media 2>&1; ) | md5sum | cut -c 2-10
+exit
+sudo visudo
+sudo chmod 0440 /etc/sudoers.d/universe_ip
+su - destroyer
+ echo $( IP=10.1.0.$(($RANDOM%200)); DEV=enp0s3; sudo ip a add $IP/24 dev $DEV 2>&1; ip a | grep $IP | head -n 1 | cut -c -16; sudo ip a del $IP/24 dev $DEV 2>&1;) | md5sum | cut -c -10

@@ -1,0 +1,5 @@
+if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -n "$SSH_TTY" ] && [ -z "${STARTED_TMUX:-}" ]; then
+    export STARTED_TMUX=1
+    sleep 1
+    tmux attach-session -t ssh || tmux new-session -s ssh
+fi

@@ -1,0 +1,30 @@
+PS1="AAA-> "
+ls
+passwd
+adduser
+export PATH="/sbin"
+ls
+passwd
+adduser
+/bin/ls
+/usr/bin/passwd
+exit
+alias ls='ls -laF'
+ls
+/bin/ls
+bash
+alias ls
+exit
+alias ls
+echo "alias e='echo New alias'" >> ~/.bashrc
+source ~/.bashrc
+e
+bash
+e
+unalias e
+alias
+bash alias
+echo 'cd() { path=${1:-$HOME}; echo "We are going to change directory to $path"; builtin cd "$path"; echo "Now in: $(pwd)"; }' >> ~/.bashrc
+source ~/.bashrc
+cd /tmp
+ssh ivktac@localhost

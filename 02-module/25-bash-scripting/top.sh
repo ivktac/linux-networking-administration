@@ -16,7 +16,7 @@ while true; do
 
     mpstat | awk '/all/ { printf "%%Cpu(s): %.1f us, %.1f sy, %.1f ni, %.1f id, %.1f wa, %.1f hi, %.1f si, %.1f st\n", $3, $5, $4, $12, $6, $7, $8, $9 }'
     free -m | awk 'NR == 2 { printf "MiB Mem: %.1f total, %.1f free, %.1f used, %.1f buff/cache\n", $2, $4, $3, $6 }'
-    free -m | awk '/^Mem:/ { available_mem = $NF } /^Swap:/ { printf "MiB Swap: %.1f total, %.1f free, %.1f used, %.1f avail Mem\n ", $2, $3, $4, available_mem } '
+    free -m | awk '/^Mem:/ { available_mem = $NF } /^Swap:/ { printf "MiB Swap: %.1f total, %.1f free, %.1f used, %.1f avail Mem\n ", $2, $4, $3, available_mem } '
 
     echo ""
 

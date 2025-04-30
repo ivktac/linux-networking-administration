@@ -27,7 +27,7 @@ while true; do
     if [[ -n "$key_press" ]]; then
         case "$key_press" in
             [Pp]) sort_param="-%cpu"; continue;;
-            [Mm]) sort_param="-%mem"; continue ;;
+            [Mm]) sort_param="-rss"; continue ;;
             [Nn]) sort_param="pid"; continue ;;
             [Qq]) echo ""; exit ;;
             *) ;;

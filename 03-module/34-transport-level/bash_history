@@ -1,0 +1,44 @@
+ip a; ip r
+ss -tulnp
+ss -tunp
+grep 5555 /etc/services
+ss -tulnp
+sudo ss -tunp
+ss -tunp
+sudo ss -tulnp | grep 1000
+nc -l 22
+sudo nc -l 22
+ls
+ip a
+nc 192.168.73.170 22
+sudo ss -tulnp | grep 22
+nc 192.168.73.170 22
+nc -l 1000
+sudo nc -l 1000
+netstat
+netstat -tulnp
+ss
+ss -tulnp
+ip a
+iptables -F
+sudo iptables -I INPUT -p tcp --dport 5555 -j ACCEPT
+ss -tulnp
+sudo iptables -nvxL
+sudo iptables -F
+sudo iptables -nxvL
+nc -l 1000
+sudo nv -l 1000
+sudo nc -l 1000
+ip a
+nc 192.168.73.170 5555
+nc -kl 5555
+nc -l 5555
+nc -kl 5555
+ls
+netstat
+clear
+netstat
+netstat -tulnp
+ss
+ss -tulnp
+nc -kl 5555

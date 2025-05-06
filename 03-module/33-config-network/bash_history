@@ -1,0 +1,93 @@
+passwd
+ip a
+nmcli con
+nmcli con show "System eth1"
+ip a; ip r
+nmcli dev show eth1
+ping -c 4 8.8.8.8
+traceroute
+sudo dnf install -y traceroute
+traceroute 8.8.8.8
+cat /etc/resolv.conf
+nmcli con
+sudo dnf install -y bash-completion
+tmux
+sudo dnf install -y tmux
+tmux
+sudo nmcli connection delete "System eth1"
+ls /etc/NetworkManager/system-connections/
+test vim
+echo $?
+sudoedit /etc/sysconfig/network-scripts/ifcfg-eth1
+cat /etc/resolv.conf
+sudoedit /etc/sysconfig/network-scripts/ifcfg-eth1
+sudo nmcli con load /etc/sysconfig/network-scripts/ifcfg-eth1
+sudo nmcli con up eth1
+ls /etc/NetworkManager/system-connections
+sudo nmcli con
+ip a; ip r
+ping -c 4 8.8.8.8
+ping -c 4 10.0.0.10
+traceroute 8.8.8.8
+cat /etc/resolv.conf
+ip a; ip r
+sudo ip a del 10.0.0.20/24 dev eth1
+sudo ip a add 172.16.0.20/24 dev eth1
+sudo ip r del default via 10.0.0.1
+sudo ip r del default via 10.0.0.1 eth1
+ip r
+sudo ip r add default via 172.16.0.1
+ip r
+ip a
+ping -c 4 172.16.0.10
+ip r
+ping -c 4 172.16.0.10
+ping -c 4 8.8.8.8
+sudo ip a del 10.0.0.20/24 dev eth1
+sudo ip a add 172.16.0.20/24 dev eth1
+sudp ip r del via 10.0.0.1
+sudo ip r del via 172.16.0.1
+sudp ip r
+sudo ip r
+sudo ip r del default via 172.16.0.1
+sudo ip r add default via 172.16.0.1
+ip a
+ip r
+ping -c 4 8.8.8.8
+traceroute 8.8.8.8
+ip a
+ip r
+ping -c 172.16.0.10
+ping -c 4 172.16.0.10
+ping -c4 8.8.8.8
+sudo nmcli con up eth1
+ping -c4 8.8.8.8
+ping -c 4 172.16.0.10
+ip a
+sudo nmcli con mod eth1 ipv4.method manual
+sudo nmcli con mod eth1 ipv4.addresses 172.16.0.20/24
+sudo nmcli con mod eth1 ipv4.gateway 172.16.0.1
+sudo nmcli con mod eth1 connection.autoconnect yes
+sudo nmcli connection down eth1
+sudo nmcli connection up eth1
+ip a
+ping -c 4 172.16.0.10
+sudo ip a add 192.168.73.20/24 dev eth1
+ip a
+ip r
+ping -c 4 8.8.8.8
+traceroute 8.8.8.8
+ping -c 4 192.168.73.1
+ip r
+sudo ip r del default via 172.16.0.1 dev eth1
+sudo ip r add default via 192.168.73.1 dev eth1
+ip r
+ping -c 4 8.8.8.8
+sudo nmcli con up eth1
+ip a
+sudo nmcli connection add type ethernet con-name "System eth1" ifname eth1 ipv4.method auto ipv6.method auto
+sudo nmcli connection up "System eth1"
+ip a
+ping -c 192.168.73.0
+ping -c4 192.168.73.0
+ip a

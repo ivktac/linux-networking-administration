@@ -1,0 +1,51 @@
+ip a; ip r
+cat /etc/resolv.conf
+
+ping -c4 goo.gl
+ping -c4 8.8.8.8
+
+nslookup goo.gl
+host goo.gl
+
+sudo cp /etc/resolv.conf /etc/resolv.conf.bak
+sudo bash -c 'echo "" > /etc/resolv.conf'
+ping -c4 goo.gl
+ping -c4 8.8.8.8
+
+dig @8.8.8.8 A goo.gl
+dig @192.168.73.254 A goo.gl
+
+dig @8.8.8.8 A server.local
+dig @192.168.73.254 server.local
+
+dig @8.8.8.8 NS local
+dig @192.168.73.254 NS local
+
+dig NS .
+dig A a.root-servers.net
+
+
+sudo cp /etc/resolv.conf.bak /etc/resolv.conf
+ping -c4 goo.gl
+ping -c4 8.8.8.8
+nslookup goo.gl
+host goo.gl
+
+sudo cp /etc/hosts{,.bak}
+sudo bash -c 'echo "127.0.0.1 goo.gl" >> /etc/hosts'
+grep 'goo.gl' /etc/hosts
+ping -c4 goo.gl
+dig goo.gl
+host goo.gl
+
+cat /etc/nsswitch.conf
+grep '^hosts' /etc/nsswitch.conf
+sudo cp /etc/nsswitch.conf{,.bak}
+sudo sed -i 's/hosts:.*files/hosts: dns files/' /etc/nsswitch.conf
+ping -c4 goo.gl
+dig goo.gl
+host goo.gl
+
+sudo cp /etc/hosts{,.bak}
+sudo bash -c 'echo "192.168.73.148 neigh.local" >> /etc/hosts'
+ping -c4 neigh.local

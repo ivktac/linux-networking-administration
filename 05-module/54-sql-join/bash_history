@@ -1,0 +1,19 @@
+# Виведіть назву та рік випуску кожного фільму, режисером якого є James Cameron.
+mysql 'Rating' -p -e "SELECT title, year FROM Movie WHERE director = 'James Cameron';" | md5sum | cut -c 4-9
+
+# Вивести назву фільму і його середню оцінку в порядку від більшого до меншого значення.
+mysql 'Rating' -p -e "SELECT m.title, avg(stars) FROM Movie AS m JOIN Rating r ON m.mID = r.mID GROUP BY m.title ORDER BY 2 DESC;" | md5sum | cut -c 4-9
+
+# Виведіть назву і рік випуску кожного фільму, який не отримав оцінку.
+mysql 'Rating' -p -e "SELECT m.title, m.year FROM Movie AS m LEFT JOIN Rating AS r ON r.mID = m.mID WHERE r.stars IS NULL;" | md5sum | cut -c 4-9
+
+# Виведіть назву фільму, режисера та критика для всіх випадків, коли критик повторно оцінив фільм і дав йому оцінку вище, за попередню. У виводі дайте полям назви, як показано на зображенні:
+mysql 'Rating' -p -e 'WITH rp AS (SELECT rID, mID, stars, ratingDate, LAG(stars) OVER (PARTITION BY rID, mID ORDER BY ratingDate) AS prev_stars FROM Rating) SELECT DISTINCT m.title AS "Movie title", m.director AS "Director", r.name AS "Reviewer" FROM rp JOIN Movie AS m ON rp.mID = m.mID  JOIN Reviewer AS r ON rp.rID = r.rID WHERE rp.prev_stars IS NOT NULL AND rp.stars > rp.prev_stars;' | md5sum | cut -c 4-9
+
+# Вивести назву фільму та кількість символів в ній лише для тих фільмів, в яких кількість символів в назві більша 15-ти:
+mysql 'Rating' -p -e 'SELECT title as "Title", LENGTH(title) AS "Symbols" FROM Movie WHERE LENGTH(title) > 15;' | md5sum | cut -c 4-9
+
+# Виявити наявність зв'язку між довжиною назви фільму і середньою оцінкою, яку отримує фільм від критиків.
+# Для цього підрахуйте середню оцінку для фільмів, чия назва менша або рівна 15 символам, а також середню оцінку для фільмів, чия назва більша за 15 символів.
+# Впевніться, що ви рахуєте саме середнє значення від попередньо підрахованих середніх значень оцінок по кожному фільму.
+mysql 'Rating' -p -e 'SELECT AVG(LENGTH(m.title)) AS `Avg symbols`, AVG(t.avg_stars) AS `Avg stars` FROM Movie m JOIN (SELECT mID, AVG(stars) AS avg_stars FROM Rating GROUP BY mID) AS t ON m.mID = t.mID GROUP BY CASE WHEN LENGTH(m.title) <= 15 THEN 0 ELSE 1 END ORDER BY 1;' | md5sum | cut -c 4-9
